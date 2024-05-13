@@ -1,4 +1,5 @@
 import firebase from "firebase";
+import {getAuth} from "firebase/auth";
  var firebaseconfig = {
    apiKey: "AIzaSyDJrNSfU7S9CF_lEIf4Z81uYXeDMfiLI2Y",
    authDomain: "blood-bank-react-b9aca.firebaseapp.com",
@@ -9,5 +10,6 @@ import firebase from "firebase";
    measurementId: "G-S6ZGCXDXQY"
  }
  var fire=firebase.initializeApp(firebaseconfig);
+ const auth=getAuth(fire);
 
-export default fire;
+export {fire,auth};
