@@ -1,7 +1,7 @@
 // index.jsx
 import React from "react";
 import ReactDOM from "react-dom";
-import LoginPage from "./authcomponent";
+import LoginPage from "./authcomponent/LoginPage";
 
  // Import the LoginPage component
 
