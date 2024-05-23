@@ -44,12 +44,16 @@ a {
     transition: all 0.3s ease;
 }
 
-a:hover {
-    transform: translateX(10%);
-    color: red;
-    text-decoration: underline;
-    font-size: 22px;
+a:hover{
+    display: flex;
+    background-color: red;
+    color: white;
+    font-size: 20px;
     font-weight: bolder;
+    height: 5vh;
+    justify-content: center;
+    width: 150%;
+    border-radius: 40px;
 }
 
 .btn {
@@ -68,6 +72,16 @@ a:hover {
 
 .btn:hover {
     background-color: red;
-    transform: scale(1.1);
-    color: white;
+    display: flex;
+    width: 5rem;
+    height: 5vh;
+    align-items: center;
+    margin-right: 7rem;
+    justify-content: center;
+    border-radius: 7%;
+    
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    
 }
