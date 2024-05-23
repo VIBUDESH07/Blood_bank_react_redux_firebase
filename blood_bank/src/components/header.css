@@ -8,19 +8,22 @@
 
 .container {
     display: flex;
-    background-color: white;
+    background-color: rgb(250, 250, 250);
     height: 13vh;
     width: 100%;
+    margin:5px;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
     font-size: 20px;
     border: 2px solid black;
+    box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 .logo {
     font-size: 24px;
-    color: white;
+    color: rgb(255, 0, 0);  /* Changed to black to stand out against white background */
 }
 
 .navbar ul {
@@ -34,7 +37,7 @@
 }
 
 a {
-    color: black;
+    color: rgb(0, 0, 0);
     text-decoration: none;
     transition: all 0.3s ease;
 }
@@ -52,7 +55,7 @@ a:hover {
     width: 5rem;
     height: 5vh;
     align-items: center;
-    margin-right:7rem;
+    margin-right: 7rem;
     justify-content: center;
     border-radius: 7%;
     background-color: white;
