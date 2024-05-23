@@ -8,13 +8,14 @@
 
 .container {
     display: flex;
-    background-color: grey;
+    background-color: white;
     height: 13vh;
     width: 100%;
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
     font-size: 20px;
+    border: 2px solid black;
 }
 
 .logo {
@@ -40,9 +41,10 @@ a {
 
 a:hover {
     transform: translateX(10%);
-    color: coral;
+    color: red;
     text-decoration: underline;
     font-size: 22px;
+    font-weight: bolder;
 }
 
 .btn {
@@ -50,6 +52,7 @@ a:hover {
     width: 5rem;
     height: 5vh;
     align-items: center;
+    margin-right:7rem;
     justify-content: center;
     border-radius: 7%;
     background-color: white;
