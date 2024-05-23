@@ -79,7 +79,6 @@ a:hover{
     margin-right: 7rem;
     justify-content: center;
     border-radius: 7%;
-    
     border: 1px solid black;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
