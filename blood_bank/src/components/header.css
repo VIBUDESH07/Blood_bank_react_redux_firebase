@@ -4,6 +4,7 @@
     box-sizing: border-box;
     border: 0;
     outline: 0;
+    font-family: "poppins";
 }
 
 .container {
@@ -17,7 +18,7 @@
     padding: 0 2rem;
     font-size: 20px;
     border: 2px solid black;
-    box-shadow: 10px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 4px 4px 10px -3px #000;
     border-radius: 40px;
     margin-top: 3rem;
     margin-left: 10%;
@@ -38,21 +39,20 @@
     display: inline;
 }
 
-a {
+a  {
     color: rgb(0, 0, 0);
     text-decoration: none;
     transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
 }
 
 a:hover{
-    display: flex;
-    background-color: red;
+   
+     background-color: red;
     color: white;
-    font-size: 20px;
-    font-weight: bolder;
-    height: 5vh;
+     
     justify-content: center;
-    width: 150%;
+   
     border-radius: 40px;
 }
 
@@ -63,14 +63,14 @@ a:hover{
     align-items: center;
     margin-right: 7rem;
     justify-content: center;
-    border-radius: 7%;
+    border-radius: 7px;
     background-color: white;
     border: 1px solid black;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn:hover {
+a .btn:hover {
     background-color: red;
     display: flex;
     width: 5rem;
