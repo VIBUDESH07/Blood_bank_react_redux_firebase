@@ -1,0 +1,80 @@
+/* src/components/addData.css */
+.add-data-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f2f5;
+  }
+  
+  .add-data-box {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 400px; /* Increased width for better alignment */
+  }
+  
+  .input-box {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .input-box input[type="text"],
+  .input-box input[type="date"],
+  .input-box input[type="email"],
+  .input-box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+  }
+  
+  .input-box input[type="checkbox"] {
+    margin-left: 10px;
+  }
+  
+  .input-box label {
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    color: #333;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.5s;
+  }
+  
+  .input-box input:focus + label,
+  .input-box input:valid + label {
+    top: -30px;
+    left: 10px;
+    color: #3498db;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: #3498db;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #2980b9;
+  }
+  
+  .error {
+    color: red;
+    margin-bottom: 10px;
+  }
+  
+  .success {
+    color: green;
+    margin-bottom: 10px;
+  }
+  
