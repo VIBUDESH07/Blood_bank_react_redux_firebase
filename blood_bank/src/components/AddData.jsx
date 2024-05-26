@@ -10,7 +10,6 @@ const AddData = () => {
   const [branchName, setBranchName] = useState('');
   const [branchDistrict, setBranchDistrict] = useState('');
   const [entryDate, setEntryDate] = useState('');
-  
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
@@ -25,7 +24,6 @@ const AddData = () => {
         branchName,
         branchDistrict,
         entryDate,
-        
       });
       setSuccess('Data added successfully!');
     } catch (err) {
@@ -85,7 +83,6 @@ const AddData = () => {
             />
             <label>Entry Date</label>
           </div>
-          
           <button type="submit" className="submit-btn">Add Data</button>
         </form>
       </div>
