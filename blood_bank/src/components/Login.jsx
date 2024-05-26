@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('blood_bank'); // default user type
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -14,7 +15,11 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/add-data"); // Programmatically navigate to "/data" route
+      if (userType === 'blood_bank') {
+        navigate("/bbdash");
+      } else {
+        navigate("/data");
+      }
     } catch (error) {
       setError(error.message);
     }
@@ -43,6 +48,17 @@ const Login = () => {
               required
             />
             <label>Password</label>
+          </div>
+          <div className="input-box">
+            <select 
+              value={userType} 
+              onChange={(e) => setUserType(e.target.value)}
+              required
+            >
+              <option value="blood_bank">Blood Bank</option>
+              <option value="hospital">Hospital</option>
+            </select>
+            <label>User Type</label>
           </div>
           <button type="submit" className="login-btn">Login</button>
         </form>
