@@ -18,11 +18,13 @@ function App() {
       
       <Routes>
         <Route path="/" element={<Layout />} />
+        <Route path="/home" element={<Layout />} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/data" element={<FetchData/>}/>
+        <Route path="/data" element={<Data/>}/>
         <Route path="/add-data" element={<AddData/>}/>
         <Route path="/bb-dash" element={<Bbdash/>}/>
+        <Route path="/hos-data" element={<FetchData/>}/>
           </Routes>
       
     </>
