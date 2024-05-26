@@ -9,6 +9,7 @@ import Register from './components/Register';
 import Data from './components/Data';
 import AddData from './components/AddData';
 import FetchData from './components/FetchData';
+import Bbdash from './components/Bbdash';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/data" element={<FetchData/>}/>
         <Route path="/add-data" element={<AddData/>}/>
+        <Route path="/bb-dash" element={<Bbdash/>}/>
           </Routes>
       
     </>
