@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase'; // Adjust the import based on your file structure
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './FetchRequests.css';
 
@@ -40,6 +40,26 @@ const Bbdash = () => {
     setSearchTerm(e.target.value);
   };
 
+  const handleApprove = async (id) => {
+    try {
+      const requestDoc = doc(db, 'request', id);
+      await updateDoc(requestDoc, { status: 'approved' });
+      setData(prevData => prevData.map(item => item.id === id ? { ...item, status: 'approved' } : item));
+    } catch (err) {
+      console.error("Error updating document: ", err);
+    }
+  };
+
+  const handleNotApprove = async (id) => {
+    try {
+      const requestDoc = doc(db, 'request', id);
+      await updateDoc(requestDoc, { status: 'not approved' });
+      setData(prevData => prevData.map(item => item.id === id ? { ...item, status: 'not approved' } : item));
+    } catch (err) {
+      console.error("Error updating document: ", err);
+    }
+  };
+
   if (loading) {
     return (
       <div className="spinner-container">
@@ -69,6 +89,9 @@ const Bbdash = () => {
             <th>Branch Name</th>
             <th>Branch District</th>
             <th>Entry Date</th>
+            <th>Status</th>
+            <th>Approve</th>
+            <th>Not Approve</th>
           </tr>
         </thead>
         <tbody>
@@ -79,6 +102,9 @@ const Bbdash = () => {
               <td>{item.branchName || 'N/A'}</td>
               <td>{item.branchDistrict || 'N/A'}</td>
               <td>{item.entryDate || 'N/A'}</td>
+              <td>{item.status || 'Pending'}</td>
+              <td><button onClick={() => handleApprove(item.id)}>Approve</button></td>
+              <td><button onClick={() => handleNotApprove(item.id)}>Not Approve</button></td>
             </tr>
           ))}
         </tbody>
