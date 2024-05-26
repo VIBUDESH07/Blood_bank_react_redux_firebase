@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, addDoc } from 'firebase/firestore';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './FetchData.css';
 
@@ -40,9 +40,14 @@ const FetchData = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleMakeRequest = () => {
-    // Implement the logic for making a request here
-    alert('Request has been made!');
+  const handleMakeRequest = async (item) => {
+    try {
+      await addDoc(collection(db, 'request'), item);
+      alert('Request has been made!');
+    } catch (err) {
+      console.error("Error making request: ", err);
+      alert('Failed to make request.');
+    }
   };
 
   if (loading) {
@@ -66,7 +71,6 @@ const FetchData = () => {
         value={searchTerm}
         onChange={handleSearch}
       />
-      <button onClick={handleMakeRequest}>Make Request</button>
       <table>
         <thead>
           <tr>
@@ -75,6 +79,7 @@ const FetchData = () => {
             <th>Branch Name</th>
             <th>Branch District</th>
             <th>Entry Date</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -85,6 +90,9 @@ const FetchData = () => {
               <td>{item.branchName || 'N/A'}</td>
               <td>{item.branchDistrict || 'N/A'}</td>
               <td>{item.entryDate || 'N/A'}</td>
+              <td>
+                <button onClick={() => handleMakeRequest(item)}>Make Request</button>
+              </td>
             </tr>
           ))}
         </tbody>
