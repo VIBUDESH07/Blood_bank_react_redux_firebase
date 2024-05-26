@@ -16,9 +16,9 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       if (userType === 'blood_bank') {
-        navigate("/bbdash");
+        navigate("/bb-dash");
       } else {
-        navigate("/data");
+        navigate("/hos-data");
       }
     } catch (error) {
       setError(error.message);
