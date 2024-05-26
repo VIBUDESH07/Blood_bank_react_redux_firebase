@@ -14,7 +14,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate("/data"); // Programmatically navigate to "/data" route
+      navigate("/add-data"); // Programmatically navigate to "/data" route
     } catch (error) {
       setError(error.message);
     }
