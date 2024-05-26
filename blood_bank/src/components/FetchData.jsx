@@ -3,6 +3,7 @@ import { db } from '../firebase/firebase';
 import { collection, getDocs, addDoc } from 'firebase/firestore';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './FetchData.css';
+import Header from './Header';
 
 const FetchData = () => {
   const [data, setData] = useState([]);
@@ -63,6 +64,8 @@ const FetchData = () => {
   }
 
   return (
+    <>
+    <Header/>
     <div>
       <h2>Fetched Data</h2>
       <input 
@@ -98,6 +101,7 @@ const FetchData = () => {
         </tbody>
       </table>
     </div>
+    </>
   );
 };
 
