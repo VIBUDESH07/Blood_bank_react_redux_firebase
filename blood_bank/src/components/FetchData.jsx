@@ -1,12 +1,14 @@
-// src/components/FetchData.jsx
 import React, { useState, useEffect } from 'react';
-import { db } from '../firebase/firebase'; // Adjust the import based on your file structure
+import { db } from '../firebase/firebase';
 import { collection, getDocs } from 'firebase/firestore';
+import ClipLoader from 'react-spinners/ClipLoader';
+import './FetchData.css';
 
 const FetchData = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +18,7 @@ const FetchData = () => {
           id: doc.id,
           ...doc.data(),
         }));
+        console.log(dataArray); // Debugging: Print the fetched data
         setData(dataArray);
       } catch (err) {
         setError(err.message);
@@ -27,8 +30,27 @@ const FetchData = () => {
     fetchData();
   }, []);
 
+  const filteredData = data.filter(item =>
+    (item.bloodGroup && item.bloodGroup.toLowerCase().includes(searchTerm.toLowerCase())) ||
+    (item.branchName && item.branchName.toLowerCase().includes(searchTerm.toLowerCase())) ||
+    (item.branchDistrict && item.branchDistrict.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleMakeRequest = () => {
+    // Implement the logic for making a request here
+    alert('Request has been made!');
+  };
+
   if (loading) {
-    return <p>Loading...</p>;
+    return (
+      <div className="spinner-container">
+        <ClipLoader color="#123abc" loading={loading} size={50} />
+      </div>
+    );
   }
 
   if (error) {
@@ -38,17 +60,35 @@ const FetchData = () => {
   return (
     <div>
       <h2>Fetched Data</h2>
-      <ul>
-        {data.map((item) => (
-          <li key={item.id}>
-            <p>Blood Group: {item.bloodGroup}</p>
-            <p>Blood ID: {item.bloodId}</p>
-            <p>Branch Name: {item.branchName}</p>
-            <p>Branch District: {item.branchDistrict}</p>
-            <p>Entry Date: {item.entryDate}</p>
-          </li>
-        ))}
-      </ul>
+      <input 
+        type="text"
+        placeholder="Search by blood group, branch name, or district..."
+        value={searchTerm}
+        onChange={handleSearch}
+      />
+      <button onClick={handleMakeRequest}>Make Request</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Blood Group</th>
+            <th>Blood ID</th>
+            <th>Branch Name</th>
+            <th>Branch District</th>
+            <th>Entry Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredData.map((item) => (
+            <tr key={item.id}>
+              <td>{item.bloodGroup || 'N/A'}</td>
+              <td>{item.bloodId || 'N/A'}</td>
+              <td>{item.branchName || 'N/A'}</td>
+              <td>{item.branchDistrict || 'N/A'}</td>
+              <td>{item.entryDate || 'N/A'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
