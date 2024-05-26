@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Data from './components/Data';
 import AddData from './components/AddData';
+import FetchData from './components/FetchData';
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
         <Route path="/" element={<Layout />} />
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/>
-        <Route path="/data" element={<AddData/>}/>
+        <Route path="/data" element={<FetchData/>}/>
+        <Route path="/add-data" element={<AddData/>}/>
           </Routes>
       
     </>
