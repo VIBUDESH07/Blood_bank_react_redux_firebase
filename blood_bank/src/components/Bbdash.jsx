@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase'; // Adjust the import based on your file structure
-import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
+import { collection, getDocs, getDoc, deleteDoc, doc, setDoc } from 'firebase/firestore';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './FetchRequests.css';
 
@@ -40,24 +40,36 @@ const Bbdash = () => {
     setSearchTerm(e.target.value);
   };
 
-  const handleApprove = async (id) => {
+  const moveToCollectionAndDelete = async (id, targetCollection) => {
     try {
-      const requestDoc = doc(db, 'request', id);
-      await updateDoc(requestDoc, { status: 'approved' });
-      setData(prevData => prevData.map(item => item.id === id ? { ...item, status: 'approved' } : item));
+      const requestDocRef = doc(db, 'request', id);
+      const docSnapshot = await getDoc(requestDocRef);
+      const requestData = docSnapshot.data();
+
+      if (requestData) {
+        console.log(`Moving document with ID ${id} to ${targetCollection}`); // Debugging
+        // Add document to the target collection
+        await setDoc(doc(db, targetCollection, id), requestData);
+        // Delete document from the request collection
+        await deleteDoc(requestDocRef);
+        
+        // Update local state to remove the deleted item
+        setData(prevData => prevData.filter(item => item.id !== id));
+        console.log(`Document with ID ${id} moved to ${targetCollection} and deleted from request`);
+      } else {
+        console.error(`Document with ID ${id} does not exist in 'request' collection`);
+      }
     } catch (err) {
-      console.error("Error updating document: ", err);
+      console.error(`Error moving document to ${targetCollection}: `, err);
     }
   };
 
+  const handleApprove = async (id) => {
+    await moveToCollectionAndDelete(id, 'approve');
+  };
+
   const handleNotApprove = async (id) => {
-    try {
-      const requestDoc = doc(db, 'request', id);
-      await updateDoc(requestDoc, { status: 'not approved' });
-      setData(prevData => prevData.map(item => item.id === id ? { ...item, status: 'not approved' } : item));
-    } catch (err) {
-      console.error("Error updating document: ", err);
-    }
+    await moveToCollectionAndDelete(id, 'not approve');
   };
 
   if (loading) {
