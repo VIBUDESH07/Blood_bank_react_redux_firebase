@@ -84,3 +84,32 @@ a .btn:hover {
     transition: background-color 0.3s ease, transform 0.3s ease;
     
 }
+.log-out-btn{
+     display: flex;
+    width: 5rem;
+    height: 5vh;
+    margin-top: 1.5rem;
+    align-items: center;
+    margin-right: 7rem;
+    justify-content: center;
+    border-radius: 7px;
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.log-out-btn:hover{
+
+    background-color: red;
+    display: flex;
+    width: 5rem;
+    height: 5vh;
+    align-items: center;
+    margin-right: 7rem;
+    justify-content: center;
+    border-radius: 7%;
+    border: 1px solid black;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
