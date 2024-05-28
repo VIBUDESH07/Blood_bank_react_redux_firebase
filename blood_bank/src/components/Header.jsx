@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './header.css';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const loginStatus = localStorage.getItem('login');
+    if (loginStatus === 'true') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('login');
+    setIsLoggedIn(false);
+  };
+
   return (
     <div className="container">
       <div className="logo">
@@ -16,9 +30,15 @@ const Header = () => {
         </ul>
       </div>
       <div>
-        <Link to="/login" className='btn'>
-        Login
-        </Link>
+        {isLoggedIn ? (
+          <button onClick={handleLogout} className='btn'>
+            Logout
+          </button>
+        ) : (
+          <Link to="/login" className='btn'>
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
