@@ -14,7 +14,7 @@ const Login = () => {
 
   useEffect(() => {
     // Check if user is already logged in from localStorage
-    const loggedInStatus = localStorage.getItem('isLoggedIn');
+    const loggedInStatus = localStorage.getItem('login');
     if (loggedInStatus === 'true') {
       setIsLoggedIn(true);
     }
@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('login', 'true');
       setIsLoggedIn(true);
       if (userType === 'blood_bank') {
         navigate('/bb-dash');
