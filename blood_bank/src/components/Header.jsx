@@ -13,7 +13,7 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('login');
+    localStorage.setItem('login', 'false');
     setIsLoggedIn(false);
   };
 
@@ -31,7 +31,7 @@ const Header = () => {
       </div>
       <div>
         {isLoggedIn ? (
-          <button onClick={handleLogout} className='btn'>
+          <button onClick={handleLogout} className='log-out-btn'>
             Logout
           </button>
         ) : (
