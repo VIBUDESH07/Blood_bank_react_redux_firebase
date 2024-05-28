@@ -39,7 +39,7 @@ const Login = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      localStorage.setItem('isLoggedIn', 'false');
+      localStorage.setItem('login', 'false');
       setIsLoggedIn(false);
       navigate('/');
     } catch (error) {
@@ -48,6 +48,7 @@ const Login = () => {
   };
 
   const handleSubmit = (e) => {
+    e.preventDefault();
     if (isLoggedIn) {
       handleLogout();
     } else {
@@ -56,47 +57,42 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-box">
-        <h2>{isLoggedIn ? 'Welcome Back' : 'Login'}</h2>
-        {error && <p className="error">{error}</p>}
-        {!isLoggedIn && (
-          <form onSubmit={handleSubmit}>
-            <div className="input-box">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-              <label>Email</label>
-            </div>
-            <div className="input-box">
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              <label>Password</label>
-            </div>
-            <div className="input-box">
-              <select
-                value={userType}
-                onChange={(e) => setUserType(e.target.value)}
-                required
-              >
-                <option value="blood_bank">Blood Bank</option>
-                <option value="hospital">Hospital</option>
-              </select>
-              <label>User Type</label>
-            </div>
-          </form>
-        )}
-        <button onClick={handleSubmit} className="login-btn">
-          {isLoggedIn ? 'Logout' : 'Login'}
-        </button>
-      </div>
+    <div>
+      <h2>{isLoggedIn ? '' : 'Login'}</h2>
+      {error && <p className="error">{error}</p>}
+      {!isLoggedIn && (
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Email"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Password"
+            />
+          </div>
+          <div>
+            <select
+              value={userType}
+              onChange={(e) => setUserType(e.target.value)}
+              required
+            >
+              <option value="blood_bank">Blood Bank</option>
+              <option value="hospital">Hospital</option>
+            </select>
+          </div>
+          <button type="submit">{isLoggedIn ? 'Logout' : 'Login'}</button>
+        </form>
+      )}
     </div>
   );
 };
