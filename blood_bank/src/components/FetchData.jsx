@@ -42,8 +42,9 @@ const FetchData = () => {
   };
 
   const handleMakeRequest = async (item) => {
+    const { id, ...itemData } = item; // Exclude the id property
     try {
-      await addDoc(collection(db, 'request'), item);
+      await addDoc(collection(db, 'request'), itemData);
       alert('Request has been made!');
     } catch (err) {
       console.error("Error making request: ", err);
@@ -65,42 +66,42 @@ const FetchData = () => {
 
   return (
     <>
-    <Header/>
-    <div>
-      <h2>Fetched Data</h2>
-      <input 
-        type="text"
-        placeholder="Search by blood group, branch name, or district..."
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-      <table>
-        <thead>
-          <tr>
-            <th>Blood Group</th>
-            <th>Blood ID</th>
-            <th>Branch Name</th>
-            <th>Branch District</th>
-            <th>Entry Date</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item) => (
-            <tr key={item.id}>
-              <td>{item.bloodGroup || 'N/A'}</td>
-              <td>{item.bloodId || 'N/A'}</td>
-              <td>{item.branchName || 'N/A'}</td>
-              <td>{item.branchDistrict || 'N/A'}</td>
-              <td>{item.entryDate || 'N/A'}</td>
-              <td>
-                <button onClick={() => handleMakeRequest(item)}>Make Request</button>
-              </td>
+      <Header />
+      <div>
+        <h2>Fetched Data</h2>
+        <input 
+          type="text"
+          placeholder="Search by blood group, branch name, or district..."
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+        <table>
+          <thead>
+            <tr>
+              <th>Blood Group</th>
+              <th>Blood ID</th>
+              <th>Branch Name</th>
+              <th>Branch District</th>
+              <th>Entry Date</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {filteredData.map((item) => (
+              <tr key={item.id}>
+                <td>{item.bloodGroup || 'N/A'}</td>
+                <td>{item.bloodId || 'N/A'}</td>
+                <td>{item.branchName || 'N/A'}</td>
+                <td>{item.branchDistrict || 'N/A'}</td>
+                <td>{item.entryDate || 'N/A'}</td>
+                <td>
+                  <button onClick={() => handleMakeRequest(item)}>Make Request</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
