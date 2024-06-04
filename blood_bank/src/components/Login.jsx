@@ -57,11 +57,10 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>{isLoggedIn ? '' : 'Login'}</h2>
-      {error && <p className="error">{error}</p>}
+    <div className='login-container'>
+     {error && <p className="error">{error}</p>}
       {!isLoggedIn && (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='login-box'>
           <div>
             <input
               type="email"
