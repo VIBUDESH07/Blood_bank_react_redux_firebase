@@ -3,6 +3,7 @@ import { db } from '../firebase/firebase'; // Adjust the import based on your fi
 import { collection, getDocs, getDoc, deleteDoc, doc, setDoc } from 'firebase/firestore';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './FetchRequests.css';
+import Bbnavbar from '../Blood--bank Navbar/Bbnavbar';
 
 const Bbdash = () => {
   const [data, setData] = useState([]);
@@ -85,6 +86,8 @@ const Bbdash = () => {
   }
 
   return (
+    <>
+    <Bbnavbar/><br></br>
     <div>
       <h2>Fetched Requests</h2>
       <input 
@@ -122,6 +125,7 @@ const Bbdash = () => {
         </tbody>
       </table>
     </div>
+    </>
   );
 };
 
