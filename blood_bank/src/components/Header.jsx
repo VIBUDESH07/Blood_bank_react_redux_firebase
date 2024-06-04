@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './header.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const navihate=useNavigate();
   useEffect(() => {
     const loginStatus = localStorage.getItem('login');
     if (loginStatus === 'true') {
@@ -15,6 +15,7 @@ const Header = () => {
   const handleLogout = () => {
     localStorage.setItem('login', 'false');
     setIsLoggedIn(false);
+    navihate('/');
   };
 
   return (
