@@ -25,7 +25,7 @@ function App() {
         <Route path="/add-data" element={<AddData/>}/>
         <Route path="/bb-dash" element={<Bbdash/>}/>
         <Route path="/hos-data" element={<FetchData/>}/>
-          </Routes>
+        </Routes>
       
     </>
   );
