@@ -31,8 +31,11 @@ const Login = () => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      // Check if the logged-in user is an admin (you'll need to implement this logic)
+      const isAdmin = true; // Replace with actual admin check
       localStorage.setItem('login', 'true');
       localStorage.setItem('userType', userType);
+      localStorage.setItem('isAdmin', isAdmin.toString());
       setIsLoggedIn(true);
       if (userType === 'blood_bank') {
         navigate('/bb-dash');
@@ -49,6 +52,7 @@ const Login = () => {
       await signOut(auth);
       localStorage.setItem('login', 'false');
       localStorage.removeItem('userType');
+      localStorage.removeItem('isAdmin');
       setIsLoggedIn(false);
       navigate('/');
     } catch (error) {
