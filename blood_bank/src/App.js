@@ -11,6 +11,7 @@ import AddData from './components/AddData';
 import FetchData from './components/FetchData';
 import Bbdash from './components/Bbdash';
 import ProtectedRoute from './components/ProtectedRoute'; // Import the new ProtectedRoute component
+import AddHospital from './components/AddHospital';
 
 function App() {
   return (
@@ -41,6 +42,13 @@ function App() {
         <Route path="/bb-dash" element={
           <ProtectedRoute 
             element={Bbdash} 
+            requiredType="blood_bank"
+            isAdmin={true} // Only blood bank admins can access Bbdash
+          />} 
+        />
+         <Route path="/add-hospital" element={
+          <ProtectedRoute 
+            element={AddHospital} 
             requiredType="blood_bank"
             isAdmin={true} // Only blood bank admins can access Bbdash
           />} 
