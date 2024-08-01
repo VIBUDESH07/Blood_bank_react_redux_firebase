@@ -10,6 +10,7 @@ const FetchData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [reason, setReason] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,10 +42,15 @@ const FetchData = () => {
     setSearchTerm(e.target.value);
   };
 
+  const handleReasonChange = (e) => {
+    setReason(e.target.value);
+  };
+
   const handleMakeRequest = async (item) => {
     const { id, ...itemData } = item; // Exclude the id property
+    const requestData = { ...itemData, documentId: id, reason };
     try {
-      await addDoc(collection(db, 'request'), itemData);
+      await addDoc(collection(db, 'request'), requestData);
       alert('Request has been made!');
     } catch (err) {
       console.error("Error making request: ", err);
@@ -74,6 +80,12 @@ const FetchData = () => {
           placeholder="Search by blood group, branch name, or district..."
           value={searchTerm}
           onChange={handleSearch}
+        />
+        <input 
+          type="text"
+          placeholder="Enter reason for request..."
+          value={reason}
+          onChange={handleReasonChange}
         />
         <table>
           <thead>
