@@ -52,6 +52,7 @@ const FetchData = () => {
     try {
       await addDoc(collection(db, 'request'), requestData);
       alert('Request has been made!');
+      setReason(''); // Clear reason input after successful request
     } catch (err) {
       console.error("Error making request: ", err);
       alert('Failed to make request.');
