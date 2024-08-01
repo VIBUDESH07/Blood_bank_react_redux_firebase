@@ -95,7 +95,7 @@ const Bbdash = () => {
 
   return (
     <>
-      <Bbnavbar /><br></br>
+      <Bbnavbar /><br />
       <div>
         <h2>Fetched Requests</h2>
         <input
@@ -112,6 +112,7 @@ const Bbdash = () => {
               <th>Branch Name</th>
               <th>Branch District</th>
               <th>Entry Date</th>
+              <th>Reason</th>
               <th>Status</th>
               <th>Approve</th>
               <th>Not Approve</th>
@@ -125,6 +126,7 @@ const Bbdash = () => {
                 <td>{item.branchName || 'N/A'}</td>
                 <td>{item.branchDistrict || 'N/A'}</td>
                 <td>{item.entryDate || 'N/A'}</td>
+                <td>{item.reason || 'N/A'}</td>
                 <td>{item.status || 'Pending'}</td>
                 <td><button onClick={() => handleApprove(item.id)}>Approve</button></td>
                 <td><button onClick={() => handleNotApprove(item.id)}>Not Approve</button></td>
