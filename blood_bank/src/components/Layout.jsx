@@ -20,9 +20,7 @@ const Layout = () => {
     setIsAdmin(storedIsAdmin);
 
     // Redirect to login if not logged in
-    if (!loggedInStatus) {
-      navigate('/login');
-    }
+    
   }, [navigate]);
 
   return (
