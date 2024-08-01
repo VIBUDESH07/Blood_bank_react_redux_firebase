@@ -17,10 +17,20 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />} />
-        <Route path="/home" element={<Layout />} />
+        <Route path="/home" element={
+          <ProtectedRoute 
+            element={Layout} 
+            public={true} // Allow access without login
+          />} 
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/data" element={<Data />} />
+        <Route path="/data" element={
+          <ProtectedRoute 
+            element={Data} 
+            public={true} // Allow access without login
+          />} 
+        />
         <Route path="/add-data" element={
           <ProtectedRoute 
             element={AddData} 
@@ -42,6 +52,7 @@ function App() {
           />} 
         />
       </Routes>
+      <Footer />
     </>
   );
 }
