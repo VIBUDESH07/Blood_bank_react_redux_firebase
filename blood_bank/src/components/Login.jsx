@@ -15,20 +15,28 @@ const Login = () => {
   useEffect(() => {
     // Check if user is already logged in from localStorage
     const loggedInStatus = localStorage.getItem('login');
-    if (loggedInStatus === 'true') {
+    const storedUserType = localStorage.getItem('userType');
+    if (loggedInStatus === 'true' && storedUserType) {
       setIsLoggedIn(true);
+      setUserType(storedUserType);
+      if (storedUserType === 'blood_bank') {
+        navigate('/bb-dash');
+      } else if (storedUserType === 'hospital') {
+        navigate('/hos-data');
+      }
     }
-  }, []);
+  }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
       localStorage.setItem('login', 'true');
+      localStorage.setItem('userType', userType);
       setIsLoggedIn(true);
       if (userType === 'blood_bank') {
         navigate('/bb-dash');
-      } else {
+      } else if (userType === 'hospital') {
         navigate('/hos-data');
       }
     } catch (error) {
@@ -40,6 +48,7 @@ const Login = () => {
     try {
       await signOut(auth);
       localStorage.setItem('login', 'false');
+      localStorage.removeItem('userType');
       setIsLoggedIn(false);
       navigate('/');
     } catch (error) {
@@ -58,7 +67,7 @@ const Login = () => {
 
   return (
     <div className='login-container'>
-     {error && <p className="error">{error}</p>}
+      {error && <p className="error">{error}</p>}
       {!isLoggedIn && (
         <form onSubmit={handleSubmit} className='login-box'>
           <div>
