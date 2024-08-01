@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase/firebase';
-import { collection, getDocs, addDoc } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import ClipLoader from 'react-spinners/ClipLoader';
 import './FetchData.css';
 import Header from './Header';
+import Bbdash from './Bbdash';
 
 const Data = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userType, setUserType] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +32,17 @@ const Data = () => {
       }
     };
 
-    fetchData();
+    const loggedInStatus = localStorage.getItem('login') === 'true';
+    const storedUserType = localStorage.getItem('userType');
+    const storedIsAdmin = localStorage.getItem('isAdmin') === 'true';
+
+    setIsLoggedIn(loggedInStatus);
+    setUserType(storedUserType);
+    setIsAdmin(storedIsAdmin);
+
+    if (loggedInStatus) {
+      fetchData();
+    }
   }, []);
 
   const filteredData = data.filter(item =>
@@ -40,7 +54,6 @@ const Data = () => {
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
   };
-
 
   if (loading) {
     return (
@@ -54,42 +67,44 @@ const Data = () => {
     return <p>Error: {error}</p>;
   }
 
+  if (isLoggedIn && userType === 'blood_bank' && isAdmin) {
+    return <Bbdash />;
+  }
+
   return (
     <>
-    <Header/><br></br>
-    <div>
-      <h2>Fetched Data</h2>
-      <input 
-        type="text"
-        placeholder="Search by blood group, branch name, or district..."
-        value={searchTerm}
-        onChange={handleSearch}
-      />
-      <table>
-        <thead>
-          <tr>
-            <th>Blood Group</th>
-            <th>Blood ID</th>
-            <th>Branch Name</th>
-            <th>Branch District</th>
-            <th>Entry Date</th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          {filteredData.map((item) => (
-            <tr key={item.id}>
-              <td>{item.bloodGroup || 'N/A'}</td>
-              <td>{item.bloodId || 'N/A'}</td>
-              <td>{item.branchName || 'N/A'}</td>
-              <td>{item.branchDistrict || 'N/A'}</td>
-              <td>{item.entryDate || 'N/A'}</td>
-             
+      <Header /><br />
+      <div>
+        <h2>Fetched Data</h2>
+        <input 
+          type="text"
+          placeholder="Search by blood group, branch name, or district..."
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+        <table>
+          <thead>
+            <tr>
+              <th>Blood Group</th>
+              <th>Blood ID</th>
+              <th>Branch Name</th>
+              <th>Branch District</th>
+              <th>Entry Date</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody>
+            {filteredData.map((item) => (
+              <tr key={item.id}>
+                <td>{item.bloodGroup || 'N/A'}</td>
+                <td>{item.bloodId || 'N/A'}</td>
+                <td>{item.branchName || 'N/A'}</td>
+                <td>{item.branchDistrict || 'N/A'}</td>
+                <td>{item.entryDate || 'N/A'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };
