@@ -1,6 +1,6 @@
 // src/components/AddHospital.js
 import React, { useState } from 'react';
-import { db, auth } from '../firebase/firebase'; // Adjust the import based on your file structure
+import { db, auth } from '../firebase/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
