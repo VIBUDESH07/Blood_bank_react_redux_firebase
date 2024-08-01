@@ -69,6 +69,10 @@ const Login = () => {
     }
   };
 
+  const handleGoHome = () => {
+    navigate('/home');
+  };
+
   return (
     <div className='login-container'>
       {error && <p className="error">{error}</p>}
@@ -103,6 +107,9 @@ const Login = () => {
             </select>
           </div>
           <button type="submit">{isLoggedIn ? 'Logout' : 'Login'}</button>
+          <button type="button" onClick={handleGoHome} className='go-home-btn'>
+            Go to Home
+          </button>
         </form>
       )}
     </div>
