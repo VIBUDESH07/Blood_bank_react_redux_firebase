@@ -4,18 +4,33 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navihate=useNavigate();
+  const [userType, setUserType] = useState('');
+  const navigate = useNavigate();
+
   useEffect(() => {
     const loginStatus = localStorage.getItem('login');
+    const userType = localStorage.getItem('userType'); // Assuming userType is saved in localStorage
     if (loginStatus === 'true') {
       setIsLoggedIn(true);
+      setUserType(userType || ''); // Default to empty if userType is not set
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.setItem('login', 'false');
+    localStorage.setItem('userType', ''); // Clear userType on logout
     setIsLoggedIn(false);
-    navihate('/');
+    navigate('/');
+  };
+
+  const handleDataLinkClick = () => {
+    
+      if (userType === 'hospital') {
+        navigate('/hos-data');
+      } else {
+        navigate('/data');
+      }
+    
   };
 
   return (
@@ -26,8 +41,8 @@ const Header = () => {
       <div className="navbar">
         <ul>
           <li><Link to="/home">Home</Link></li>
-          <li><Link to="/data">Data</Link></li>
-          <li><Link to="/hospitals">Connected_Hospitals</Link></li>
+          <li><a href="#" onClick={handleDataLinkClick} className="data-link-btn1" role="button" >Data</a></li>
+          <li><Link to="/hospitals">Connected Hospitals</Link></li>
         </ul>
       </div>
       <div>
