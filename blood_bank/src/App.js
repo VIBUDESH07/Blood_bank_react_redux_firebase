@@ -24,13 +24,15 @@ function App() {
         <Route path="/add-data" element={
           <ProtectedRoute 
             element={AddData} 
-            requiredType="blood_bank" // Only blood bank users can access AddData
+            requiredType="blood_bank"
+            isAdmin={true} // Only blood bank admins can access AddData
           />} 
         />
         <Route path="/bb-dash" element={
           <ProtectedRoute 
             element={Bbdash} 
-            requiredType="blood_bank" // Only blood bank users can access Bbdash
+            requiredType="blood_bank"
+            isAdmin={true} // Only blood bank admins can access Bbdash
           />} 
         />
         <Route path="/hos-data" element={
