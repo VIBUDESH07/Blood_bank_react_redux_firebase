@@ -61,9 +61,9 @@ const Bbdash = () => {
 
         // Delete the document from the blooddata collection if approved
         if (targetCollection === 'approve') {
-          const bloodDataDocRef = doc(db, 'blooddata', id);
+          const bloodDataDocRef = doc(db, 'blooddata', requestData.documentId);
           await deleteDoc(bloodDataDocRef);
-          console.log(`Document with ID ${id} deleted from blooddata`);
+          console.log(`Document with ID ${requestData.documentId} deleted from blooddata`);
         }
       } else {
         console.error(`Document with ID ${id} does not exist in 'request' collection`);
