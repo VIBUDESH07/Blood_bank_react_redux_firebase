@@ -12,6 +12,9 @@ const AddHospital = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [contactPerson, setContactPerson] = useState('');
+  const [services, setServices] = useState('');
+  const [website, setWebsite] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const navigate = useNavigate();
@@ -34,7 +37,11 @@ const AddHospital = () => {
         name,
         address,
         phone,
-        email
+        email,
+        contactPerson,
+        services,
+        website,
+        userType: 'hospital' // Set the userType to "hospital"
       });
       setSuccess('Hospital added successfully!');
       // Redirect after successful submission
@@ -102,6 +109,32 @@ const AddHospital = () => {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+          />
+        </div>
+        <div>
+          <label>Contact Person:</label>
+          <input
+            type="text"
+            value={contactPerson}
+            onChange={(e) => setContactPerson(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Services Offered:</label>
+          <input
+            type="text"
+            value={services}
+            onChange={(e) => setServices(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Website:</label>
+          <input
+            type="url"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
           />
         </div>
         <button type="submit">Add Hospital</button>
