@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Sidebar from '../components/Sidebar'; // Import the Sidebar component
 
 const Bbnavbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // State to manage sidebar visibility
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,6 +20,10 @@ const Bbnavbar = () => {
     navigate('/');
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="container">
       <div className="logo">
@@ -29,20 +35,26 @@ const Bbnavbar = () => {
           <li><Link to="/data">Data</Link></li>
           <li><Link to="/hospitals">Connected Hospitals</Link></li>
           <li><Link to="/add-data">Add Blood Group</Link></li>
-          <li><Link to="/add-hospital">Add Hospital</Link></li> {/* Added link to Add Hospital */}
+          <li><Link to="/add-hospital">Add Hospital</Link></li>
         </ul>
       </div>
       <div>
         {isLoggedIn ? (
-          <button onClick={handleLogout} className='log-out-btn'>
-            Logout
-          </button>
+          <>
+            <button onClick={handleLogout} className='log-out-btn'>
+              Logout
+            </button>
+            <button onClick={toggleSidebar} className='sidebar-toggle-btn'>
+              {isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}
+            </button>
+          </>
         ) : (
           <Link to="/login" className='btn'>
             Login
           </Link>
         )}
       </div>
+      {isSidebarOpen && <Sidebar />} {/* Render Sidebar conditionally */}
     </div>
   );
 };
