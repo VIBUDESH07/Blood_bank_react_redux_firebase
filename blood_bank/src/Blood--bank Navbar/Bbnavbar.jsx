@@ -26,8 +26,8 @@ const Bbnavbar = () => {
 
   return (
     <div className="container">
-      <div className="logo">
-        <span>Home</span>
+      <div className="logo" onClick={toggleSidebar} style={{ cursor: 'pointer' }}>
+        <span>{isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}</span>
       </div>
       <div className="navbar">
         <ul>
@@ -40,14 +40,9 @@ const Bbnavbar = () => {
       </div>
       <div>
         {isLoggedIn ? (
-          <>
-            <button onClick={handleLogout} className='log-out-btn'>
-              Logout
-            </button>
-            <button onClick={toggleSidebar} className='sidebar-toggle-btn'>
-              {isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}
-            </button>
-          </>
+          <button onClick={handleLogout} className='log-out-btn'>
+            Logout
+          </button>
         ) : (
           <Link to="/login" className='btn'>
             Login
