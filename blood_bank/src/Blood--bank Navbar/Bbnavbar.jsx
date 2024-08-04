@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar'; // Import the Sidebar component
+ // Import the CSS for styling
 
 const Bbnavbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,8 +26,8 @@ const Bbnavbar = () => {
   };
 
   return (
-    <div className="container">
-      <div className="logo" onClick={toggleSidebar} style={{ cursor: 'pointer' }}>
+    <div className="bbdash-container">
+      <div className="logo" onClick={toggleSidebar}>
         <span>{isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}</span>
       </div>
       <div className="navbar">
