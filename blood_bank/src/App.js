@@ -40,7 +40,7 @@ function App() {
         <Route path="/add-data" element={
           <ProtectedRoute 
             element={AddData} 
-            requiredType="blood_bank"
+            requiredType="blood bank"
             isAdmin={true} 
           />} 
         />
@@ -49,7 +49,7 @@ function App() {
          <Route path="/add-hospital" element={
           <ProtectedRoute 
             element={AddHospital} 
-            requiredType="blood_bank"
+            requiredType="blood bank"
             isAdmin={true} 
           />} 
         />
