@@ -32,6 +32,7 @@ const Data = () => {
       }
     };
 
+    // Check localStorage for login status and user type
     const loggedInStatus = localStorage.getItem('login') === 'true';
     const storedUserType = localStorage.getItem('userType');
     const storedIsAdmin = localStorage.getItem('isAdmin') === 'true';
@@ -40,9 +41,10 @@ const Data = () => {
     setUserType(storedUserType);
     setIsAdmin(storedIsAdmin);
 
-  
+    // Fetch data if the user is not an admin or not of type 'blood bank'
+    if (!loggedInStatus || userType !== 'blood bank' || !storedIsAdmin) {
       fetchData();
-    
+    }
   }, []);
 
   const filteredData = data.filter(item =>
@@ -67,7 +69,8 @@ const Data = () => {
     return <p>Error: {error}</p>;
   }
 
-  if (isLoggedIn && userType === 'blood_bank' && isAdmin) {
+  // Conditionally render Bbdash or Data component
+  if (isLoggedIn && userType === 'blood bank' ) {
     return <Bbdash />;
   }
 
