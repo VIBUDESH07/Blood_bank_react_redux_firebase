@@ -40,9 +40,9 @@ const Data = () => {
     setUserType(storedUserType);
     setIsAdmin(storedIsAdmin);
 
-    if (loggedInStatus) {
+  
       fetchData();
-    }
+    
   }, []);
 
   const filteredData = data.filter(item =>
