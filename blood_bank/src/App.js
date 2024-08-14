@@ -44,12 +44,7 @@ function App() {
             isAdmin={true} 
           />} 
         />
-        <Route path="/bb-dash" element={
-          <ProtectedRoute 
-            element={Bbdash} 
-            requiredType="blood_bank"
-            isAdmin={true} 
-          />} 
+        <Route path="/bb-dash" element={<Bbdash/>}
         />
          <Route path="/add-hospital" element={
           <ProtectedRoute 
