@@ -3,26 +3,53 @@ import './login.css';
 import { auth } from '../firebase/firebase';
 import { signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState('');
+  const [role, setRole] = useState('');
   const navigate = useNavigate();
+  const db = getFirestore();
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem('login') === 'true';
-    setIsLoggedIn(loggedInStatus);
+    const storedRole = localStorage.getItem('role');
+    if (loggedInStatus && storedRole) {
+      setIsLoggedIn(true);
+      setRole(storedRole);
+    }
   }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
       localStorage.setItem('login', 'true');
       setIsLoggedIn(true);
-      navigate('/dashboard'); // Adjust the navigation based on your needs
+
+      // Query Firestore for the document where the email matches the user's email
+      const q = query(collection(db, 'users'), where('email', '==', email));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        const userDoc = querySnapshot.docs[0];
+        const userRole = userDoc.data().role;
+        setRole(userRole);
+        localStorage.setItem('userType', userRole);  // Save the role in localStorage
+        console.log('User role:', userRole);
+        // Perform any role-based navigation or logic here
+      } else {
+        console.log('No such user document!');
+      }
+      if(role ==='blood bank'){
+      navigate('/bb-dash');
+      }
+      else{
+        navigate('/hos-data')
+      } // Adjust the navigation based on your needs
     } catch (error) {
       setError(error.message);
     }
@@ -32,7 +59,9 @@ const Login = () => {
     try {
       await signOut(auth);
       localStorage.setItem('login', 'false');
+      localStorage.removeItem('role');  // Remove the role from localStorage
       setIsLoggedIn(false);
+      setRole('');
       navigate('/');
     } catch (error) {
       setError(error.message);
