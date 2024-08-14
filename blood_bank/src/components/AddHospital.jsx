@@ -43,6 +43,11 @@ const AddHospital = () => {
         website,
         userType: 'hospital' // Set the userType to "hospital"
       });
+      await addDoc(collection(db, 'users'), {
+        
+        email,
+        role: 'hospital' // Set the userType to "hospital"
+      });
       setSuccess('Hospital added successfully!');
       // Redirect after successful submission
       navigate('/home'); // Adjust the route as needed
