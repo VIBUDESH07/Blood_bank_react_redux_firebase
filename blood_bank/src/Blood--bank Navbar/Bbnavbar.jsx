@@ -50,7 +50,7 @@ const Bbnavbar = () => {
           </Link>
         )}
       </div>
-      {isSidebarOpen && <Sidebar />} {/* Render Sidebar conditionally */}
+      {isSidebarOpen && <Sidebar />} 
     </div>
   );
 };
