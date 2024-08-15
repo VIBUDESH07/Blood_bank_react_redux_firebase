@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Footer from './components/Footer';
@@ -14,6 +14,16 @@ import AddHospital from './components/AddHospital';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userType, setUserType] = useState(null);
+
+  useEffect(() => {
+    const loggedInStatus = localStorage.getItem('login') === 'true';
+    const storedUserType = localStorage.getItem('userType');
+
+    setIsLoggedIn(loggedInStatus);
+    setUserType(storedUserType);
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -24,7 +34,11 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Layout />} />
-        <Route path="/home" element={<Layout />} />
+        <Route path="/home" element={
+          isLoggedIn && userType === 'blood bank' 
+            ? <Bbdash /> 
+            : <Layout />
+        } />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
@@ -39,21 +53,18 @@ function App() {
           <ProtectedRoute 
             element={AddData} 
             requiredType="blood bank"
-          
           />} 
         />
         <Route path="/bb-dash" element={
           <ProtectedRoute 
             element={Bbdash} 
             requiredType="blood bank"
-            
           />} 
         />
         <Route path="/add-hospital" element={
           <ProtectedRoute 
             element={AddHospital} 
             requiredType="blood bank"
-            
           />} 
         />
         <Route path="/hos-data" element={
