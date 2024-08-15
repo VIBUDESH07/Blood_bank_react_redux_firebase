@@ -44,7 +44,6 @@ const AddHospital = () => {
         userType: 'hospital' // Set the userType to "hospital"
       });
       await addDoc(collection(db, 'users'), {
-        
         email,
         role: 'hospital' // Set the userType to "hospital"
       });
