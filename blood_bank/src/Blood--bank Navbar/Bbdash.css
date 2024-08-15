@@ -1,26 +1,121 @@
-/* App.css */
+/* Container for the Blood Bank Navbar */
 .bbdash-container {
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.navbar {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.navbar li {
+  margin: 0 10px;
+}
+
+.navbar li a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar li a:hover {
+  color: #ececec;
+}
+
+.log-out-btn, .btn {
+  background-color: #ebebeb;
+  color: #0e0d0d;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.log-out-btn:hover, .btn:hover {
+  background-color: #c82333;
+}
+
+/* Sidebar styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #343a40;
+  color: #fff;
+  padding: 20px;
+  z-index: 1001;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+  color: #adb5bd;
+}
+
+/* Add media queries for responsiveness */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .sidebar {
-    width: 250px;
-    background-color: #f4f4f4; /* Sidebar background color */
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100%;
-    z-index: 1000; /* Ensure it's on top */
-    transition: transform 0.3s ease-in-out;
+
+  .navbar li {
+    margin: 5px 0;
   }
-  
-  .sidebar.closed {
-    transform: translateX(-100%);
+
+  .logo {
+    font-size: 16px;
   }
-  
-  .content {
-    margin-left: 250px; /* Adjust based on sidebar width */
-    padding: 20px;
-    flex-grow: 1;
-  }
-  
+}

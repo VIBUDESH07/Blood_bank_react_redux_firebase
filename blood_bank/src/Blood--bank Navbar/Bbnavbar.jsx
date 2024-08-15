@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar'; // Import the Sidebar component
- // Import the CSS for styling
+import '../Blood--bank Navbar/Bbdash.css';
 
 const Bbnavbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -16,9 +16,13 @@ const Bbnavbar = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.setItem('login', 'false');
+    // Clear all relevant session data
+    localStorage.removeItem('login');
+    localStorage.removeItem('userType'); // Assuming isAdmin was also stored
+
+    // Update state and navigate to the login page
     setIsLoggedIn(false);
-    navigate('/');
+    navigate('/login');
   };
 
   const toggleSidebar = () => {

@@ -59,7 +59,7 @@ const Login = () => {
     try {
       await signOut(auth);
       localStorage.setItem('login', 'false');
-      localStorage.removeItem('role');  // Remove the role from localStorage
+      localStorage.removeItem('userType');  // Remove the role from localStorage
       setIsLoggedIn(false);
       setRole('');
       navigate('/');

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Footer from './components/Footer';
 import Layout from './components/Layout';
@@ -16,14 +16,15 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userType, setUserType] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem('login') === 'true';
     const storedUserType = localStorage.getItem('userType');
-
+    console.log(storedUserType);
     setIsLoggedIn(loggedInStatus);
     setUserType(storedUserType);
-  }, []);
+  }, [location.pathname]); // Re-run the effect whenever the path changes
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -33,7 +34,11 @@ function App() {
     <>
       <Routes>
         {/* Public Routes */}
-        <Route path="/" element={<Layout />} />
+        <Route path="/" element={
+           isLoggedIn && userType === 'blood bank' 
+           ? <Bbdash /> 
+           : <Layout />
+        } />
         <Route path="/home" element={
           isLoggedIn && userType === 'blood bank' 
             ? <Bbdash /> 
