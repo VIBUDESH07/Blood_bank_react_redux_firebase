@@ -5,6 +5,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 import './FetchData.css';
 import Header from './Header';
 import Bbdash from './Bbdash';
+import Bbnavbar from '../Blood--bank Navbar/Bbnavbar';  // Import BBnavbar component
 
 const Data = () => {
   const [data, setData] = useState([]);
@@ -13,7 +14,6 @@ const Data = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userType, setUserType] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,16 +35,13 @@ const Data = () => {
     // Check localStorage for login status and user type
     const loggedInStatus = localStorage.getItem('login') === 'true';
     const storedUserType = localStorage.getItem('userType');
-    const storedIsAdmin = localStorage.getItem('isAdmin') === 'true';
 
     setIsLoggedIn(loggedInStatus);
     setUserType(storedUserType);
-    setIsAdmin(storedIsAdmin);
 
-    // Fetch data if the user is not an admin or not of type 'blood bank'
-    if (!loggedInStatus || userType !== 'blood bank' || !storedIsAdmin) {
+    // Fetch data if the user is not of type 'blood bank'
       fetchData();
-    }
+    
   }, []);
 
   const filteredData = data.filter(item =>
@@ -69,14 +66,13 @@ const Data = () => {
     return <p>Error: {error}</p>;
   }
 
-  // Conditionally render Bbdash or Data component
-  if (isLoggedIn && userType === 'blood bank' ) {
-    return <Bbdash />;
-  }
+  // Conditionally render BBnavbar instead of Header if the user is logged in and of type 'blood bank'
+  const NavbarComponent = isLoggedIn && userType === 'blood bank' ? Bbnavbar : Header;
+  console.log(userType)
 
   return (
     <>
-      <Header /><br />
+      <NavbarComponent /><br />
       <div>
         <h2>Fetched Data</h2>
         <input 

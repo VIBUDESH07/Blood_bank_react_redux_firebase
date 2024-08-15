@@ -39,21 +39,21 @@ function App() {
           <ProtectedRoute 
             element={AddData} 
             requiredType="blood bank"
-            isAdmin={true} 
+          
           />} 
         />
         <Route path="/bb-dash" element={
           <ProtectedRoute 
             element={Bbdash} 
             requiredType="blood bank"
-            isAdmin={true} 
+            
           />} 
         />
         <Route path="/add-hospital" element={
           <ProtectedRoute 
             element={AddHospital} 
             requiredType="blood bank"
-            isAdmin={true} 
+            
           />} 
         />
         <Route path="/hos-data" element={
