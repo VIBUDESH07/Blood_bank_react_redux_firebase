@@ -1,0 +1,494 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 150px;
+    transition: 0.6s;
+}
+
+header.sticky{
+    background: #fff;
+    padding: 10px 150px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.logo{
+    font-size: 2em;
+    color: #111;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.navbar a{
+    font-size: 1em;
+    color: #111;
+    font-weight: 500;
+    margin-left: 30px;
+    text-decoration: none;
+}
+
+.navbar a:hover,
+.navbar a.active{
+    color: #ff0157;
+}
+
+#menu-icon{
+    font-size: 2em;
+    color: #111;
+    cursor: pointer;
+    display: none;
+}
+
+.home{
+    display: flex;
+    justify-content: space-between;
+    min-height: 100vh;
+    width: 100%;
+    padding: 100px 150px 0;
+    background: #ff0157;
+}
+
+.home-content h3{
+    font-size: 2.5em;
+    color: #fff;
+    font-weight: 600;
+}
+
+.home-content h1{
+    font-size: 4.5em;
+    color: #fff;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.home-content h3 span{
+    color: #111;
+    font-weight: 700;
+}
+
+.home-content p{
+    color: #fff;
+    margin: 15px 0 25px;
+    font-size: 1.1em;
+}
+
+.btn{
+    display: inline-block;
+    background: #fff;
+    color: #ff0157;
+    padding: 10px 30px;
+    font-size: 1.03em;
+    font-weight: 500;
+    margin-top: 10px;
+    border-radius: 50px;
+    border: 2px solid transparent;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.btn:hover{
+    background: transparent;
+    color: #fff;
+    border-color: #fff;
+}
+
+.home-img img{
+    /*max-width: 200%;*/
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.about, 
+.services, 
+.portfolio, 
+.contact{
+    padding: 100px 150px;
+}
+
+.heading{
+    font-size: 3em;
+    color: #111;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.heading span{
+    color: #ff0157;
+}
+
+.about-content h3{
+    font-size: 2em;
+    color: #111;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.about-content p{
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 400;
+    margin: 20px 0;
+}
+
+.about-content a{
+    background: #ff0157;
+    color: #fff;
+    padding: 10px 30px;
+    font-size: 1.03em;
+    font-weight: 500;
+    margin-top: 10px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.about-content a:hover{
+    background: transparent;
+    color: #111;
+    border: 2px solid #e6d7dc;
+}
+
+.services-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.services-box{
+    position: relative;
+    width: calc(100% / 3 - 10px);
+    background: #fff;
+    padding: 50px 40px;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.5s;
+}
+
+.services-box i{
+    font-size: 2em;
+    color: #ff0157;
+    margin-bottom: 15px;
+}
+
+.services-box h3{
+    font-size: 1.3em;
+    color: #111;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.services-box p{
+    font-size: 1em;
+    color: #333;
+    line-height: 1.6em;
+    margin-bottom: 15px;
+}
+
+.services-box a{
+    background: #ff0157;
+    color: #250e0e;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: 500;
+    margin-top: 10px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    transition: 0.5s;
+}
+
+.services-box:hover{
+    transform: translateY(-10px);
+    background: #ff0157;
+}
+
+.services-box:hover a{
+    background: #fff;
+    color: #ff0157;
+}
+
+.portfolio-container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.portfolio-box{
+    position: relative;
+    width: calc(100% / 3 - 10px);
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.portfolio-box img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.portfolio-layer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,1,87,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.portfolio-layer h4{
+    font-size: 1.5em;
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.portfolio-layer p{
+    font-size: 1em;
+    color: #161616;
+    text-align: center;
+    margin-bottom: 15px;
+    line-height: 1.5em;
+}
+
+.portfolio-layer i{
+    font-size: 1.5em;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.portfolio-layer i:hover{
+    color: #111;
+}
+
+.portfolio-box:hover .portfolio-layer{
+    opacity: 1;
+}
+
+.contact form{
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.input-box{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.input-box input{
+    width: calc(100% / 2 - 10px);
+    padding: 10px;
+    font-size: 1.03em;
+    color: #333;
+    border: 2px solid rgba(0,0,0,0.3);
+    border-radius: 50px;
+    outline: none;
+}
+
+textarea{
+    width: 100%;
+    padding: 10px;
+    font-size: 1.03em;
+    color: #333;
+    border: 2px solid rgba(0,0,0,0.3);
+    border-radius: 20px;
+    outline: none;
+    resize: none;
+}
+
+input[type="submit"]{
+    background: #ff0157;
+    color: #fff;
+    padding: 10px 50px;
+    font-size: 1.03em;
+    font-weight: 500;
+    margin-top: 10px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover{
+    background: transparent;
+    color: #111;
+    border-color: #ff0157;
+}
+
+.footer{
+    background: #ff0157;
+    padding: 20px 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-text p{
+    font-size: 1em;
+    color: #fff;
+}
+
+.footer-iconTop{
+    font-size: 2em;
+    color: #fff;
+    cursor: pointer;
+}
+
+.footer-iconTop:hover{
+    color: #ff0157;
+}
+
+@media (max-width: 1160px){
+    header{
+        padding: 15px 8%;
+    }
+    .home{
+        padding: 100px 8% 0;
+    }
+    .about,
+    .services,
+    .portfolio,
+    .contact{
+        padding: 100px 8%;
+    }
+    .footer{
+        padding: 20px 8%;
+        background-color: #ff0157;
+    }
+}
+
+@media (max-width: 1060px){
+    .home-content h3{
+        font-size: 2em;
+    }
+    .home-content h1{
+        font-size: 4em;
+    }
+}
+
+@media (max-width: 960px){
+    .home-content h3{
+        font-size: 1.8em;
+    }
+    .home-content h1{
+        font-size: 3em;
+    }
+    .home-content h3 span{
+        font-size: 2.2em;
+    }
+}
+
+@media (max-width: 768px){
+    header{
+        padding: 15px 50px;
+    }
+    #menu-icon{
+        display: block;
+    }
+    .navbar{
+        position: absolute;
+        top: 100%;
+        left: -150%;
+        width: 100%;
+        height: 100vh;
+        background: #111;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: 0.5s;
+    }
+    .navbar a{
+        font-size: 1.5em;
+        color: #fff;
+        font-weight: 500;
+        margin-left: 0;
+        padding: 20px;
+        display: block;
+    }
+    .navbar a:hover,
+    .navbar a.active{
+        color: #ff0157;
+    }
+    .navbar.active{
+        left: 0;
+    }
+    .home{
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+    }
+    .home-content{
+        padding-top: 40px;
+    }
+    .about-content h3{
+        text-align: center;
+    }
+    .services-container{
+        flex-direction: column;
+    }
+    .services-box{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .portfolio-container{
+        flex-direction: column;
+    }
+    .portfolio-box{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px){
+    .home-content h3{
+        font-size: 1.5em;
+    }
+    .home-content h1{
+        font-size: 2.5em;
+    }
+    .about-content h3{
+        font-size: 1.8em;
+    }
+}

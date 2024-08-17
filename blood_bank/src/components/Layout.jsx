@@ -3,6 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import Bbdash from './Bbdash';
 import { useNavigate } from 'react-router-dom';
+import Front from './Front';
 
 const Layout = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,7 +31,7 @@ const Layout = () => {
       ) : (
         <>
           <Header />
-          {/* Add content here if needed */}
+           <Front/>
           <Footer />
         </>
       )}
