@@ -1,0 +1,135 @@
+/* Register Container */
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #dbb1a7, #e0dddb);
+  }
+  
+  /* Register Box */
+  .register-box {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 3rem 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Heading */
+  .register-box h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Input Fields */
+  .input-box {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-box input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .input-box input:focus {
+    border-color: #ff7e5f;
+    box-shadow: 0 0 8px rgba(255, 126, 95, 0.5);
+  }
+  
+  /* Label Styling */
+  .input-box label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    font-size: 20px;
+    transform: translateY(-50%);
+    
+    color: #aaa;
+    pointer-events: none;
+    transition: 0.3s ease;
+  }
+  
+  .input-box input:focus + label,
+  .input-box input:not(:placeholder-shown) + label {
+    top: 10px;
+    font-size: 17px;
+    font-weight: 700;
+    color: #ff7e5f;
+  }
+  
+  /* Button */
+  .register-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .register-btn:hover {
+    background: #ff7e5f;
+    transform: translateY(-2px);
+  }
+  
+  /* Success and Error Messages */
+  .success,
+  .error {
+    font-size: 14px;
+    margin-bottom: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .success {
+    color: #155724;
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .error {
+    color: #721c24;
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .register-box {
+      padding: 2rem;
+    }
+  
+    .register-btn {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  

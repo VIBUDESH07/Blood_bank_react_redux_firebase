@@ -32,8 +32,7 @@ const Bbnavbar = () => {
   return (
     <div className="bbdash-container">
       <div className="logo" onClick={toggleSidebar}>
-        <span>{isSidebarOpen ? 'Close Sidebar' : 'Open Sidebar'}</span>
-      </div>
+       </div>
       <div className="navbar">
         <ul>
           <li><Link to="/home">Home</Link></li>

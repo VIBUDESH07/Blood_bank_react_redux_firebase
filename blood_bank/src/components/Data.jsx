@@ -74,7 +74,7 @@ const Data = () => {
     <>
       <NavbarComponent /><br />
       <div>
-        <h2>Fetched Data</h2>
+        <h2>Blood Details</h2>
         <input 
           type="text"
           placeholder="Search by blood group, branch name, or district..."

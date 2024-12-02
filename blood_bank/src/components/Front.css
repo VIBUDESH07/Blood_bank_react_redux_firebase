@@ -31,6 +31,7 @@ header{
 
 header.sticky{
     background: #fff;
+    width:50%;
     padding: 10px 150px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
@@ -102,10 +103,12 @@ header.sticky{
     display: inline-block;
     background: #fff;
     color: #ff0157;
-    padding: 10px 30px;
+    
+    width:30%;
     font-size: 1.03em;
     font-weight: 500;
     margin-top: 10px;
+    align-items: center;
     border-radius: 50px;
     border: 2px solid transparent;
     text-transform: uppercase;
@@ -161,13 +164,15 @@ header.sticky{
 .about-content a{
     background: #ff0157;
     color: #fff;
-    padding: 10px 30px;
+    
     font-size: 1.03em;
     font-weight: 500;
-    margin-top: 10px;
+     
     border-radius: 50px;
+    width:11%;
     text-transform: uppercase;
     transition: 0.5s;
+  
 }
 
 .about-content a:hover{
@@ -216,11 +221,12 @@ header.sticky{
 .services-box a{
     background: #ff0157;
     color: #250e0e;
-    padding: 10px 20px;
+    width:60%;
     font-size: 1em;
     font-weight: 500;
-    margin-top: 10px;
+ 
     border-radius: 50px;
+
     text-transform: uppercase;
     transition: 0.5s;
 }

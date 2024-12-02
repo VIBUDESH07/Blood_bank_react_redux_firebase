@@ -70,6 +70,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
+          <h2>Log In</h2>
       {error && <div className="error-message">{error}</div>}
       <form onSubmit={isLoggedIn ? handleLogout : handleLogin}>
         <div className="form-group">

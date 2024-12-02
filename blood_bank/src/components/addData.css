@@ -43,13 +43,15 @@
     font-size: 14px;
     pointer-events: none;
     transition: 0.5s;
+    z-index: 1111;
   }
   
   .input-box input:focus + label,
   .input-box input:valid + label {
-    top: -30px;
+    top: -10px;
     left: 10px;
     color: #3498db;
+    z-index: 1111;
   }
   
   .submit-btn {
